@@ -1,5 +1,5 @@
 <?php
-include "./Machine.php";
+include "Machine.php";
 
 class ManufacturingFacility { //pogon
     private $name;

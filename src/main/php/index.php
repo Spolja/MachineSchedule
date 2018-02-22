@@ -6,12 +6,12 @@
     </head>
     <body>
        <?php
-            include "./ManufacturingFacility.php";
+            include "./classes/ManufacturingFacility.php";
+
+            $facilityHandle = fopen("../../resources/facility - A.csv", "r");
             
-            $facilityHandle = fopen("facility - A.csv", "r");
-            
-            //$facilityB_CSV = fopen("facility - B.csv", "r");
-            //$facilityC_CSv = fopen("facility - C.csv", "r");
+            //$facilityB_CSV = fopen("../../resources/facility - B.csv", "r");
+            //$facilityC_CSv = fopen("../../resources/facility - C.csv", "r");
             
             $facilityA = new ManufacturingFacility($facilityHandle);
             fclose($facilityHandle);
