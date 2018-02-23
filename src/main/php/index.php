@@ -8,13 +8,17 @@
        <?php
             include "./classes/ManufacturingFacility.php";
 
-            $facilityHandle = fopen("../../resources/facility - A.csv", "r");
+            $facilityAHandle = fopen("../../resources/facility - A.csv", "r");
+            $facilityBHandle = fopen("../../resources/facility - B.csv", "r");
+            $facilityCHandle = fopen("../../resources/facility - C.csv", "r");
             
-            //$facilityB_CSV = fopen("../../resources/facility - B.csv", "r");
-            //$facilityC_CSv = fopen("../../resources/facility - C.csv", "r");
+            $facilityA = new ManufacturingFacility($facilityAHandle);
+            $facilityB = new ManufacturingFacility($facilityBHandle);
+            $facilityC = new ManufacturingFacility($facilityCHandle);
             
-            $facilityA = new ManufacturingFacility($facilityHandle);
-            fclose($facilityHandle);
+            fclose($facilityAHandle);
+            fclose($facilityBHandle);
+            fclose($facilityCHandle);
         ?>
     </body>
 </html>

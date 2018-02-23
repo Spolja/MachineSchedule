@@ -10,18 +10,20 @@ class ManufacturingFacility { //pogon
         "start T1": {machine}]
      */
     private $machines = array();
+
     public function __construct($csv) {
+
+        fgetcsv($csv, 0, ";");
         while(($data = fgetcsv($csv, 0, ";")) !== FALSE){
             $machine = new Machine($data);
             
             $this->addMachine($machine);
-            print_r($data);
         }
     }
     
     public function addMachine($machine) {
         //if machine alrdy exists, update data of it;
-        if(array_key_exists($machine->type, $array)) {
+        if(array_key_exists($machine->type, $this->machines)) {
             $updatedMachine = array_keys($this->machines, $machine->type);
             $updatedMachine->merge($machine->workTimes);
             $this->machines[$updatedMachine->type] = $updatedMachine;
