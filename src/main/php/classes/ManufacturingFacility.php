@@ -4,7 +4,7 @@ include "Machine.php";
 class ManufacturingFacility { //pogon
     private $name;
     
-    /* in machines array key is type of the machine
+    /* in "machines" array key is type of the machine
      machines = 
      * [ "T1": {machine},
         "start T1": {machine}]
@@ -16,7 +16,6 @@ class ManufacturingFacility { //pogon
         fgetcsv($csv, 0, ";");
         while(($data = fgetcsv($csv, 0, ";")) !== FALSE){
             $machine = new Machine($data);
-            
             $this->addMachine($machine);
         }
     }
