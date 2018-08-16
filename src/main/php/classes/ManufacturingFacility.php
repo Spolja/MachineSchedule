@@ -9,7 +9,7 @@ class ManufacturingFacility { //pogon
      * [ "T1": {machine},
         "start T1": {machine}]
      */
-    private $machines = array();
+    public $machines = array();
 
     public function __construct($csv) {
 
@@ -22,13 +22,24 @@ class ManufacturingFacility { //pogon
     
     public function addMachine($machine) {
         //if machine alrdy exists, update data of it;
-        if(array_key_exists($machine->type, $this->machines)) {
-            $updatedMachine = array_keys($this->machines, $machine->type);
-            $updatedMachine->merge($machine->workTimes);
+		$machineExists = false;
+		$updatedMachine = null;
+		foreach ($this->machines as &$machineObject) {
+			if($machine->type === $machineObject->type){
+				$updatedMachine=$machineObject;
+				$machineExists = true;
+			}
+		}
+		
+        if($machineExists) {
+            $updatedMachine->mergeWorkTimes($machine->workTimes);
+			$updatedMachine->mergeWorkDays($machine->workDays);
+			$updatedMachine->workHours += $machine->workHours;
+			
             $this->machines[$updatedMachine->type] = $updatedMachine;
         }
         else {
-            array_push($this->machines, $machine);
+            $this->machines[$machine->type] = $machine;
         }
     }
 }
